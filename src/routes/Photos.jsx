@@ -28,9 +28,14 @@ const Photos = () => {
   };
 
   useEffect(() => {
-  
     // TODO: answer here
-    handleSort()
+    setLoading(true);
+    fetch(`https://gallery-app-server.vercel.app/photos?_sort=id&_order=${sort}&q=${search}`)
+    .then((response) => response.json())
+    .then((data) => {
+      setPhotos(data);
+      setLoading(false);
+    })
   }, [sort, submited]);
 
   useEffect(() => {
@@ -39,15 +44,15 @@ const Photos = () => {
    handleData()
   }, []);
 
-  function handleSort(){
-    setLoading(true);
-    fetch(`https://gallery-app-server.vercel.app/photos?_sort=id&_order=${sort}&q=${search}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setPhotos(data);
-      setLoading(false);
-    })
-  }
+  // function handleSort(){
+  //   setLoading(true);
+  //   fetch(`https://gallery-app-server.vercel.app/photos?_sort=id&_order=${sort}&q=${search}`)
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     setPhotos(data);
+  //     setLoading(false);
+  //   })
+  // }
 
   function handleData() {
     setLoading(true);

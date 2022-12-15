@@ -34,11 +34,6 @@ const EditPhoto = () => {
   };
 
   useEffect(() => {
-    handleEdit()
-  }, [id]);
-
-
-  function handleEdit(){
     setLoading(true);
     fetch(`https://gallery-app-server.vercel.app/photos/${id}`)
       .then((response) => response.json())
@@ -48,7 +43,20 @@ const EditPhoto = () => {
         setImageUrl(item.imageUrl)
         setLoading(false)
       })
-  }
+  }, [id]);
+
+
+  // function handleEdit(){
+  //   setLoading(true);
+  //   fetch(`https://gallery-app-server.vercel.app/photos/${id}`)
+  //     .then((response) => response.json())
+  //     .then((item) => {
+  //       console.log(item)
+  //       setCaptions(item.captions);
+  //       setImageUrl(item.imageUrl)
+  //       setLoading(false)
+  //     })
+  // }
 
 
   if (error) return <div>Error!</div>;
